@@ -38,8 +38,7 @@ export default class PublishRoute extends React.Component {
                 <p>Right click and select copy link <small>Show image</small></p>
                 <p>Paste the link below and publish</p>
                 <form onSubmit={this.didSubmitTweet}>
-                    <label htmlFor="tweetID">Tweet ID:</label>
-                    <input type="text" name="tweetID" placeholder="Tweet ID" onChange={this.didChangeInput}></input>
+                    <input type="text" name="tweetID" placeholder="Paste Tweet ID here" onChange={this.didChangeInput}></input>
                     <button type="submit">Publish</button>
                 </form>
             </div>
