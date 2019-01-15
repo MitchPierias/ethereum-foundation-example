@@ -1,6 +1,6 @@
-pragma solidity ^0.5.2;
+pragma solidity ^0.5.0;
 
-//import "./Random.sol";
+import "./Random.sol";
 
 contract Foundation {
     /// Moderators are any entity which has had a submission approved
@@ -20,6 +20,8 @@ contract Foundation {
     }
     
     uint256 tokens = 1000000000;
+    
+    uint32[] queue;
     
     mapping(uint32 => Tweet) private submissions;
     
@@ -70,6 +72,8 @@ contract Foundation {
     }
 
     function publishSubmission(uint32 tweetID) whenUnique(tweetID) public payable {
+        // Queue tweet
+        queue.push(tweetID);
         // Store new submission
         Tweet memory submission = submissions[tweetID];
         submission.publisher = msg.sender;
@@ -90,10 +94,20 @@ contract Foundation {
         // Get the submission state
         return submissions[tweetID].state;
     }
+    
+    function random(uint256 maximumValue) public view returns (uint8) {
+        return uint8(uint256(keccak256(abi.encodePacked(msg.sender, block.timestamp))) % maximumValue);
+    }
 
-    function getRandomSubmission() public view returns (uint32 tweetID) {
+    function getRandomSubmission() public view returns (uint32) {
         // Should randomly generate a number between zero and unsubmitted total
+        uint8 randomIndex = random(queue.length);
         // Return the ID of the unapproved for the twitter display
+        return queue[randomIndex];
+    }
+
+    function countMembers() public pure returns (uint256) {
+        return 3;
     }
 
     /**

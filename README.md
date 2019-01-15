@@ -7,9 +7,10 @@ Install all dependencies
 ```
 npm install
 ```
-Start a blockchain instance with Geth
+Start a blockchain instance with Ganashe-CLI or Geth with mneumonic
 ```
-geth (whatever you type to start your geth server thing)
+npm install ganache-cli
+ganache-cli -m clerk orchard ill believe nuclear insane double roof doll butter clump state
 ```
 
 Test truffle is setup to run and deploy a local environment. You can configure these settings in `truffle-config.js`.
@@ -17,8 +18,11 @@ Test truffle is setup to run and deploy a local environment. You can configure t
 npm install truffle-cli -g
 truffle test --network development
 ```
-The tests I didn't write should pass... In other words the local blockchain started and a connection was established.
 
+Deploy or Migrate the contracts onto the blockchain
+```
+truffle migrate
+```
 
 Start the webpack-dev-server
 ```
