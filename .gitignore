@@ -1,0 +1,13 @@
+# Build and Release Folders
+build
+.package-lock.json
+.vscode
+# Module folders
+node_modules
+# Other files and folders
+.settings/
+# Executables
+*.swf
+*.air
+*.ipa
+*.apk
