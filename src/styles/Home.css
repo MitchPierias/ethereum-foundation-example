@@ -2,3 +2,90 @@
 .twitter-mention-button {
     height: 36px;
 }
+
+header {
+    height: 40vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-content: center;
+    align-items: center;
+}
+
+header h1 {
+    color:#FFFFFF;
+    font-size: 3.6em;
+}
+
+header h2 {
+    color:#FFFFFF;
+    font-weight: 300;
+}
+
+section {
+    display: row;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+}
+
+span {
+    display: block;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2.4vh;
+    line-height: 2.8vh;
+}
+
+.schedule {
+    height: 16vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #FFFFFF;
+}
+
+.date {
+    width: 15vmin;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    user-select: none;
+}
+
+.date .day {
+    font-size: 2vmin;
+    text-transform: uppercase;
+}
+
+.date .date {
+    font-size: 6vmin;
+}
+
+.date .month {
+    font-size: 2.7vmin;
+    text-transform: uppercase;
+}
+
+.step-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.step-box {
+    width:100vw;
+}
+
+.step-title {
+    font-size: 3.2vw;
+    line-height: 5.4vw;
+    text-transform: uppercase;
+    font-weight: 500;
+}

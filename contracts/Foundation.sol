@@ -6,10 +6,9 @@ contract Foundation {
     /// Moderators are any entity which has had a submission approved
     /// Approving or denying a submission awards moderator with a micro payment
     struct Moderator {
-        uint32[]   approvals; // This will get heavy on storage
-        bool      approved;
-        bool      staked;
-        uint32     tokens; // Don't store tokens here
+        uint32[]    approvals; // This will get heavy on storage
+        bool        approved;
+        uint32      tokens;
     }
     
     struct Tweet {
@@ -18,10 +17,17 @@ contract Foundation {
         address[] approvals; // Max at 3
         SubmissionState state;
     }
+
+    uint256 fundingDate;
+    uint256 submissionDate;
+    uint256 rewardDate;
+
+    uint8 paymentPortionPublish = 99;
+    uint8 paymentPortionModerate = 1;
     
     uint256 tokens = 1000000000;
     
-    uint32[] queue;
+    uint32[] queue; // This will get heavy on storage
     
     mapping(uint32 => Tweet) private submissions;
     
@@ -65,7 +71,6 @@ contract Foundation {
             // Store new admin
             Moderator memory owner;
             owner.approved = true;
-            owner.staked = false;
             owner.tokens = 0;
             members[admins[i]] = owner;
         }

@@ -28,9 +28,9 @@ contract("Foundation", function(accounts) {
             assert.equal(tweetID.toNumber(), TWEET_ID);
         });
     });
-
+    
     it("Approves a submission", function() {
-        return contract.approveSubmission(TWEET_ID, {sender:"0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c"}).then(function(result) {
+        return contract.approveSubmission(TWEET_ID, {from:"0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c"}).then(function(result) {
             console.log(result);
             assert.equal(true, true)
         });

@@ -1,6 +1,8 @@
-# Plant a Tree Day
-> No safemaths or token standards have been implemented.
-> You're going to want it.
+# Ethereum Variable Bounty Contract Example
+A sample variable bounty contract on the Ethereum blockchain.
+
+## Idea
+Receives money from supporters and distributes to participants. A pure charity with no middle man, no hidden fees or expenses.
 
 ## Setup
 Install all dependencies
@@ -30,15 +32,19 @@ npm start
 ```
 
 ## How it works
-This contract eliminates intermediaries
-#### Submissions
+
+### Backing Period
+The contract becomes open to supporters looking to back the cause with Ethereum.
+
+### Submission Period
+The submission period opens the contract up too bounty submissions
 Anyone with an Ethereum wallet can create a submission. Each submission requires a twitter post ID for the verification in the moderation stage. Submissions are approved once 3 moderators have verified the tweet, then all parties are paid their portion.
+
+### Reward Period
+Submissions close, moderation remains open and participants can claim their awarded portion for approved submission.
 
 #### Moderators
 Moderators are any entity which has had their submission approved. In other words, the submisison approval acts as a KYC verification stage, but we've made it community driven and incentivised our moderators as such.
-
-#### Funding (Investors)
-Investors are the third element which provide a value to the tokens allocated. Token holders can 'sell' their tokens back to the investors to recevie their reward and essentially create in interal micro economy. Actually I don't know why investors would now want an essentaill useless token, but ehh... crypto! You could possibly make moderator approval be strengethed by ownership, or higher rewards for more tokens held. This would increase locked tokens and therefor effect supply & demand, inflating token value.
 
 ## Notes
 - You will need to add safemath libraries.

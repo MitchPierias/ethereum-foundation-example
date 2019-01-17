@@ -1,31 +1,16 @@
 import React from 'react';
-import { Tweet } from 'react-twitter-widgets';
-import EthService from '../services/ethService';
+import { DrizzleContext } from 'drizzle-react';
+// Components
+import ModerateElement from '../components/ModerateElement';
 
-export default class ModerateRoute extends React.Component {
+export default function() {
 
-    constructor() {
-        super();
-        // Bind all your callback/handler functions here
-        this.didSelectApprove = this.didSelectApprove.bind(this);
-    }
-
-    didSelectApprove() {
-        alert("Approve submission");
-    }
-
-    didSelectDecline() {
-        alert("Decline submission");
-    }
-
-    render() {
-
-        return (
-            <div>
-                <Tweet tweetId='511181794914627584'/>
-                <button onClick={this.didSelectApprove}>Approve</button>
-                <button onClick={this.didSelectDecline}>Decline</button>
-            </div>
-        )
-    }
+    return (
+        <DrizzleContext.Consumer>
+            {({ drizzle, drizzleState, initialized }) => {
+                if (!initialized) return "Loading....";
+                return <ModerateElement drizzle={drizzle} drizzleState={drizzleState}/>
+            }}
+        </DrizzleContext.Consumer>
+    )
 }
