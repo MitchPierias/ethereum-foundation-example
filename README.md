@@ -1,15 +1,17 @@
 # Ethereum Variable Bounty Contract Example
-A sample variable bounty contract on the Ethereum blockchain.
+Handles bounty escrow between supporters and participants for completion of a specified task.
 
-## Idea
-Receives money from supporters and distributes to participants. A pure charity with no middle man, no hidden fees or expenses.
+- No middle men.
+- No hidden fees or expenses.
 
-## Setup
-Install all dependencies
+## Usage
+Starting a local blockchain instance with webpack-dev-server is as simple as executing `./run.sh`. Alternatively, if you'd like to manually start your blockchain and environment, you can follow the steps below.
+
+Install all required dependencies;
 ```
 npm install
 ```
-Start a blockchain instance with Ganashe-CLI or Geth with mneumonic
+Start a blockchain instance with Ganashe-CLI with our testing mneumonic;
 ```
 npm install ganache-cli
 ganache-cli -m clerk orchard ill believe nuclear insane double roof doll butter clump state
@@ -21,15 +23,18 @@ npm install truffle-cli -g
 truffle test --network development
 ```
 
-Deploy or Migrate the contracts onto the blockchain
+Compile and Migrate the contracts onto the blockchain
 ```
 truffle migrate
 ```
 
-Start the webpack-dev-server
+Start the local environment with `webpack-dev-server`:
 ```
 npm start
 ```
+
+Before you run the local environment, make sure you have Metamask installed in your browser of choice and configured to Localhost
+![](https://media.giphy.com/media/5dUIadUrTi6NYQya7B/giphy.gif | width=100)
 
 ## How it works
 

@@ -1,10 +1,11 @@
 {
-  "name": "plant-a-tree-day",
+  "name": "ethereum-bounty-example",
   "version": "0.1.0",
-  "description": "Plant a Tree Day Initiative",
+  "description": "Example Ethereum variable bounty countract",
   "main": "./src/index.js",
   "scripts": {
-    "start": "webpack-dev-server --env development --progress",
+    "start": "nf start",
+    "start:react": "webpack-dev-server --env development --progress",
     "build": "webpack --env production"
   },
   "author": "Mitch Pierias <github.com/MitchPierias>",
@@ -14,6 +15,7 @@
     "drizzle-react": "^1.2.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-pose": "^4.0.5",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
     "react-twitter-widgets": "^1.7.1",
@@ -29,6 +31,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.22.0",
     "css-loader": "^2.1.0",
+    "foreman": "^3.0.1",
     "html-webpack-plugin": "^3.2.0",
     "style-loader": "^0.23.1",
     "webpack": "^3.12.0",
