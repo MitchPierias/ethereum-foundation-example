@@ -83,7 +83,7 @@ h2 {
     align-items: stretch;
     flex-wrap: nowrap;
     list-style: none;
-    padding: 2vw 25vw;
+    padding: 1vw;
 }
 
 .scroll-card {
@@ -94,7 +94,7 @@ h2 {
     box-shadow: 0px 8px 20px 0px rgba(0,0,0,0.15);
     border-radius: 1vw;
     overflow: visible;
-    margin: 0;
+    margin: 1vw;
     padding: 2vw;
     font-size:1.6em;
     line-height: 1.6em;

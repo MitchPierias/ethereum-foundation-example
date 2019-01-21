@@ -35,13 +35,6 @@ export default class ScrollBox extends React.Component {
         const sliderValue = value(sliderStyle.get(SLIDE_AXIS), sliderStyle.set(SLIDE_AXIS));
         // Calculate final scroll position
         const toPosition = `-${44*index}vw`;
-        // Animate slider
-        spring({
-            from: sliderValue.get(),
-            to: toPosition,
-            duration: SLIDE_DURATION,
-            damping: SLIDE_DAMPING
-        }).start(sliderValue);
         // Animate cards
         this.collectCards();
     }
@@ -60,14 +53,14 @@ export default class ScrollBox extends React.Component {
                 },
                 to: {
                     scale: 1 - Math.abs((0.3/totalCards) * offset),
-                    x:-(card.get('width')*0.618*offset)
+                    x: (card.get('width')/2)-(card.get('width')*0.618*offset)
                 },
                 duration: SLIDE_DURATION,
                 damping: SLIDE_DAMPING
             });
         });
 
-        stagger(animations, 1000).start(v => v.forEach((x, i) => cardStyles[i].set(x)));
+        stagger(animations, 0).start(v => v.forEach((x, i) => cardStyles[i].set(x)));
     }
 
     render() {
