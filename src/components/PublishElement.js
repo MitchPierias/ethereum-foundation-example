@@ -1,4 +1,6 @@
 import React, { Fragment } from 'react';
+// Components
+import TwitterExample from "./TwitterExample";
 // Constants
 const TweetIDPattern = /\d$/gi;
 
@@ -44,15 +46,12 @@ export default class PublishElement extends React.Component {
 
     render() {
         return (
-            <Fragment>
-                <p>Login to twitter <small>(could use twitter api or skim cookies to sense if already logged)</small></p>
-                <p>Right click and select copy link <small>Show image</small></p>
-                <p>Paste the link below and publish</p>
+            <TwitterExample>
                 <form onSubmit={this.didSubmitTweet}>
                     <input type="text" name="tweetID" placeholder="Paste Tweet ID here" defaultValue={this.state.tweetID} onChange={this.didChangeInput}></input>
                     <button type="submit">Publish</button>
                 </form>
-            </Fragment>
+            </TwitterExample>
         )
     }
 }

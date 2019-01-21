@@ -1,6 +1,6 @@
 /** How the F**K can i override twitters tiny button size? **/
-.twitter-mention-button {
-    height: 36px;
+iframe[id*="twitter-widget"] {
+    width:"100%";
 }
 
 header {
@@ -29,6 +29,7 @@ section {
     align-items: center;
     align-content: center;
     justify-content: space-between;
+    background-color:rgb(246, 246, 246);
 }
 
 span {
@@ -73,19 +74,51 @@ h2 {
     text-transform: uppercase;
 }
 
-.step-container {
+.scroll-box {
+    overflow: visible;
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    list-style: none;
+    padding: 2vw 25vw;
 }
 
-.step-box {
-    width:100vw;
+.scroll-card {
+    width: 100vw;
+    flex: 0 0 46vw;
+    background-color: #FFFFFF;
+    border: 1px solid #F8F8F8;
+    box-shadow: 0px 8px 20px 0px rgba(0,0,0,0.15);
+    border-radius: 1vw;
+    overflow: visible;
+    margin: 0;
+    padding: 2vw;
+    font-size:1.6em;
+    line-height: 1.6em;
+    position: relative;
 }
 
-.step-title {
+.scroll-card button.badge {
+    position:absolute;
+    height: 6vw;
+    width: 6vw;
+    border-radius:3vw;
+    right:-18px;
+    top:-18px;
+    background: #FFFFFF;
+}
+
+.scroll-card button.badge.done {
+    background: #FF0266;
+}
+
+.scroll-card .title {
     font-size: 3.2vw;
     line-height: 5.4vw;
     text-transform: uppercase;
     font-weight: 500;
+    text-align: center;
 }
