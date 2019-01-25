@@ -11,7 +11,7 @@ library Random {
      * @param maximumValue The maximum value of values.
      * @return uint8 Random number.
      */
-    function generate(uint256 maximumValue) public view returns (uint8) {
-        return uint8(uint256(keccak256(abi.encodePacked(msg.sender, block.timestamp))) % maximumValue);
+    function generate(uint256 maximumValue) public view returns (uint256) {
+        return uint256(keccak256(abi.encodePacked(msg.sender, block.timestamp))) % maximumValue;
     }
 } 
