@@ -8,6 +8,7 @@ const MONTHS = ['January','February','March','April','May','June','July','August
 export default class Header extends React.Component {
 
     state = {
+        keyframe:0, // This should update with what stage the user is in (info/photo/post/submit/moderate)
         isOpen:true,
         submissionDate:new Date(),
         rewardDate:new Date()
@@ -19,7 +20,8 @@ export default class Header extends React.Component {
     }
 
     getPeriod(datePeriod) {
-        this.props.drizzle.contracts.Bounty.methods[datePeriod]().call().then(rawDate => {
+        console.log(this.props.contracts.Bounty)
+        this.props.contracts.Bounty.methods[datePeriod]().call().then(rawDate => {
             const date = new Date(rawDate * 1000);
             this.setState({[datePeriod]:date});
         }).catch(err => {
@@ -30,8 +32,8 @@ export default class Header extends React.Component {
     render() {
 
         const defaultOptions = {
-            loop: false,
-            autoplay: false, 
+            loop: true,
+            autoplay: true, 
             animationData,
             rendererSettings: {
                 preserveAspectRatio: 'xMidYMid slice'
@@ -50,8 +52,8 @@ export default class Header extends React.Component {
                         <Lottie options={defaultOptions}
                                 height={300}
                                 width={300}
-                                isStopped={true}
-                                isPaused={true}/>
+                                isStopped={false}
+                                isPaused={false}/>
                     </span>
                     <span className="date">
                         <DateElement date={this.state.rewardDate}/>

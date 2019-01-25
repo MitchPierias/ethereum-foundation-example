@@ -16,7 +16,8 @@ export default class ScrollBox extends React.Component {
     scrollRef = React.createRef();
 
     componentDidMount() {
-        this.collectCards();
+        //this.collectCards();
+        this.slideToIndex(this.props.index)
     }
 
     componentDidUpdate(prevProps) {
@@ -34,7 +35,7 @@ export default class ScrollBox extends React.Component {
         const sliderStyle = styler(slider);
         const sliderValue = value(sliderStyle.get(SLIDE_AXIS), sliderStyle.set(SLIDE_AXIS));
         // Calculate final scroll position
-        const toPosition = `-${44*index}vw`;
+        const toPosition = `-${99*index}vw`;
         // Animate slider
         spring({
             from: sliderValue.get(),
@@ -43,7 +44,7 @@ export default class ScrollBox extends React.Component {
             damping: SLIDE_DAMPING
         }).start(sliderValue);
         // Animate cards
-        this.collectCards();
+        //this.collectCards();
     }
 
     collectCards() {
@@ -52,15 +53,14 @@ export default class ScrollBox extends React.Component {
         // Animate cards
         const animations = cardStyles.map((card, idx) => {
             const offset = idx - this.props.index;
-            card.set('zIndex', (1000 - Math.abs(100 * offset)));
             return spring({
                 from: {
                     scale: card.get('scale'),
-                    x: card.get('x')
+                    [SLIDE_AXIS]: card.get(SLIDE_AXIS)
                 },
                 to: {
                     scale: 1 - Math.abs((0.3/totalCards) * offset),
-                    x:-(card.get('width')*0.618*offset)+(card.get('width')/2)
+                    [SLIDE_AXIS]:-(card.get('width')*0.618*offset)+(card.get('width')/2)
                 },
                 duration: SLIDE_DURATION,
                 damping: SLIDE_DAMPING
@@ -78,12 +78,3 @@ export default class ScrollBox extends React.Component {
         )
     }
 }
-
-class ScrollCard extends React.Component {
-
-    render() {
-        return (<div></div>)
-    }
-}
-
-export { ScrollCard }

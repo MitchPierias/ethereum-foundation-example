@@ -1,7 +1,7 @@
 import React from 'react';
 import { DrizzleContext } from 'drizzle-react';
 // Components
-import PublishElement from './../components/PublishElement';
+import PublishElement from '../components/PublishElement';
 
 export default function PublishRoute() {
 

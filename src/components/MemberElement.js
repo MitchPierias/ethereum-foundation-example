@@ -57,23 +57,18 @@ export default class MemberElement extends React.Component {
         const { tokens } = this.state;
 
         return (
-            <Fragment>
-                <svg height={40} width="100%" viewBox="0 0 64 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M 0,64 C 18,0 46,0 64,64" fill="#F6F6F6"/>
-                </svg>
-                <section style={{height:"60vh",padding:"2vw"}}>
-                    <div>You have</div>
-                    <div>{tokens} Tokens</div>
-                    <form onSubmit={this.didSubmitClaim}>
-                        <input name="amount" type="number" defaultValue={tokens} min={0} max={tokens} step={1} onChange={this.didChangeAmount}/>
-                        <button type="submit">Claim</button>
-                    </form>
-                    <form onSubmit={this.didSubmitContribute}>
-                        <input name="amount" type="number" min={0} step={0.01} onChange={this.didChangeDonation}/>
-                        <button type="submit">Contribute</button>
-                    </form>
-                </section>
-            </Fragment>
+            <section style={{padding:"2vw"}}>
+                <div>You have</div>
+                <div>{tokens} Tokens</div>
+                <form onSubmit={this.didSubmitClaim}>
+                    <input name="amount" type="number" defaultValue={tokens} min={0} max={tokens} step={1} onChange={this.didChangeAmount}/>
+                    <button type="submit">Claim</button>
+                </form>
+                <form onSubmit={this.didSubmitContribute}>
+                    <input name="amount" type="number" min={0} step={0.01} onChange={this.didChangeDonation}/>
+                    <button type="submit">Contribute</button>
+                </form>
+            </section>
         )
     }
 }

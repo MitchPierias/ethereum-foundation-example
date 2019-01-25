@@ -83,22 +83,14 @@ h2 {
     align-items: stretch;
     flex-wrap: nowrap;
     list-style: none;
-    padding: 1vw;
+    padding: 0.5vw;
 }
 
 .scroll-card {
-    width: 100vw;
-    flex: 0 0 46vw;
-    background-color: #FFFFFF;
-    border: 1px solid #F8F8F8;
-    box-shadow: 0px 8px 20px 0px rgba(0,0,0,0.15);
-    border-radius: 1vw;
-    overflow: visible;
-    margin: 1vw;
-    padding: 2vw;
-    font-size:1.6em;
-    line-height: 1.6em;
-    position: relative;
+    flex: none;
+    width: 97vw;
+    margin:1vw;
+    border: 2px solid red;
 }
 
 .scroll-card button.badge {
