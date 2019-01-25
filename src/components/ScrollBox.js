@@ -60,14 +60,14 @@ export default class ScrollBox extends React.Component {
                 },
                 to: {
                     scale: 1 - Math.abs((0.3/totalCards) * offset),
-                    x:-(card.get('width')*0.618*offset)
+                    x:-(card.get('width')*0.618*offset)+(card.get('width')/2)
                 },
                 duration: SLIDE_DURATION,
                 damping: SLIDE_DAMPING
             });
         });
 
-        stagger(animations, 1000).start(v => v.forEach((x, i) => cardStyles[i].set(x)));
+        stagger(animations, -SLIDE_DURATION).start(v => v.forEach((x, i) => cardStyles[i].set(x)));
     }
 
     render() {

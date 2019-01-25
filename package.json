@@ -13,8 +13,10 @@
   "dependencies": {
     "drizzle": "^1.2.4",
     "drizzle-react": "^1.2.0",
+    "openzeppelin-solidity": "^2.1.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-lottie": "^1.2.3",
     "react-pose": "^4.0.5",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",

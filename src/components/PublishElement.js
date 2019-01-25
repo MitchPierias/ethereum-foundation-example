@@ -17,15 +17,6 @@ export default class PublishElement extends React.Component {
         this.didSubmitTweet = this.didSubmitTweet.bind(this);
     }
 
-    componentWillMount() {
-        this.props.drizzle.contracts.Foundation.methods["countMembers"]().call()
-        .then(response => {
-            console.log(response+" members");
-        }).catch(err => {
-            console.log(err);
-        })
-    }
-
     didChangeInput(event) {
         const tweetID = event.target.value;
         this.setState({ tweetID });
@@ -35,7 +26,7 @@ export default class PublishElement extends React.Component {
         event.preventDefault();
         // Cleanse ID (Remove URL)
         const tweetID = this.state.tweetID.replace(/\D/gi,'');
-        this.props.drizzle.contracts.Foundation.methods["publishSubmission"](tweetID).send()
+        this.props.drizzle.contracts.Bounty.methods["publishSubmission"](tweetID).send()
         .then(success => {
             if (success) console.log("Success!")
             this.setState({ tweetID:'' });

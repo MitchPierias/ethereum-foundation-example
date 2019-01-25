@@ -11,3 +11,4 @@ node_modules
 *.air
 *.ipa
 *.apk
+package-lock.json
