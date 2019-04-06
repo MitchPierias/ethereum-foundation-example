@@ -16,7 +16,7 @@ export default class ScrollBox extends React.Component {
     scrollRef = React.createRef();
 
     componentDidMount() {
-        this.collectCards();
+        //this.collectCards();
     }
 
     componentDidUpdate(prevProps) {
@@ -27,9 +27,7 @@ export default class ScrollBox extends React.Component {
 
     slideToIndex(index) {
         // Get and cleanse variables
-        const toIndex = clamp(0,this.props.children.length-1)(index);
         const slider = this.scrollRef.current;
-        const cards = this.props.children;
         // Initialize controllers
         const sliderStyle = styler(slider);
         const sliderValue = value(sliderStyle.get(SLIDE_AXIS), sliderStyle.set(SLIDE_AXIS));
@@ -56,11 +54,11 @@ export default class ScrollBox extends React.Component {
             return spring({
                 from: {
                     scale: card.get('scale'),
-                    x: card.get('x')
+                    [SLIDE_AXIS]: card.get(SLIDE_AXIS)
                 },
                 to: {
                     scale: 1 - Math.abs((0.3/totalCards) * offset),
-                    x:-(card.get('width')*0.618*offset)+(card.get('width')/2)
+                    [SLIDE_AXIS]:-(card.get('width')*0.618*offset)+(card.get('width')/2)
                 },
                 duration: SLIDE_DURATION,
                 damping: SLIDE_DAMPING
@@ -78,12 +76,3 @@ export default class ScrollBox extends React.Component {
         )
     }
 }
-
-class ScrollCard extends React.Component {
-
-    render() {
-        return (<div></div>)
-    }
-}
-
-export { ScrollCard }

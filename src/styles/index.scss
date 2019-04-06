@@ -1,0 +1,194 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+/**
+ * Force App wrapper to bounds
+ **/
+[data-reactroot] {
+	width: 100vw !important;
+	height: 100vh !important;
+	position: relative;
+}
+
+/**
+ * @Chrome
+ * SVG Inline Spcaing Fix
+ **/
+svg {
+	vertical-align:top;
+	display:block;
+}
+
+body {
+	width: 100vw !important;
+	height: 100vh !important;
+	background-color:#f9f9f9;
+    color:#7f8080;
+    font-family: "Lato", Helvetica, -apple-system, Arial, sans-serif;
+	font-size: 16px;
+	line-height:1.8em;
+	font-weight:100;
+	background: #159957;
+	background: -webkit-linear-gradient(-60deg, #007991 10%, #78ffd6 100%);
+	overflow: hidden;
+	display:flex;
+	flex-direction: column;
+    justify-content: flex-end;
+    background-image: radial-gradient(at center center, rgb(65, 163, 255), rgb(2, 115, 212));
+}
+
+h1 {
+    color: #FFFFFF;
+    font-family: "Lato", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 50px;
+    letter-spacing: -1px;
+    line-height: 60px;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    text-align: center;
+    text-shadow: rgb(2, 115, 212) 0px 1px 3px;
+}
+
+section {
+	box-shadow: 0px 0px 40px 0px rgba(0,0,0,0.025);
+}
+
+input {
+	height: 36px;
+	border-radius: 4px;
+}
+
+button, a.btn:link {
+	color: #fffcf8;
+	background: #FF0266;
+	/** background: -webkit-linear-gradient(-60deg, #159957 10%, #78ffd6 100%); **/
+	height: 36px;
+	font-weight: 400;
+	font-size: 14px;
+	letter-spacing: 0.07em;
+	border-radius: 18px;
+	outline:none;
+	border:none;
+	padding:10px 16px;
+	margin:2px;
+	cursor:pointer;
+	box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.1);
+	white-space: nowrap;
+}
+
+button:hover, a.btn:link:hover {
+	box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.25);
+}
+
+a.btn, a.btn:link, a.btn:visited {
+	color: #fffcf8;
+	text-decoration: none;
+}
+
+/** How the F**K can i override twitters tiny button size? **/
+iframe[id*="twitter-widget"] {
+    width:"100%";
+}
+
+header {
+    height: 40vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-content: center;
+    align-items: center;
+}
+
+header h1 {
+    color:#FFFFFF;
+    font-size: 3.6em;
+}
+
+header h2 {
+    color:#FFFFFF;
+    font-weight: 300;
+}
+
+section {
+    display: row;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+    background-color:rgb(246, 246, 246);
+}
+
+span {
+    display: block;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2.4vh;
+    line-height: 2.8vh;
+}
+
+.schedule {
+    height: 16vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #FFFFFF;
+}
+
+.date {
+    width: 15vmin;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    user-select: none;
+}
+
+.date .day {
+    font-size: 2vmin;
+    text-transform: uppercase;
+}
+
+.date .date {
+    font-size: 6vmin;
+}
+
+.date .month {
+    font-size: 2.7vmin;
+    text-transform: uppercase;
+}
+
+input {
+    border: none;
+    outline: none;
+    background-color: #EDEDED;
+    border-radius: 4px;
+    padding: 0px 0px 0px 1vw;
+}
+
+footer {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+a, a:visited {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+footer a {
+    margin: 0vw 1vw;
+}

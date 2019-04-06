@@ -3,6 +3,14 @@ const path = require('path');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 /**
+ * Root Path
+ * @desc Constructs a valid path from the current project directory
+ * @param args Path components
+ * @returns Valid concatented path
+ */
+const rootPath = (...args) => args.reduce((fullPath, pathComponent) => path.join(fullPath, pathComponent), __dirname);
+
+/**
  * HTML Webpack Plugin
  * @desc Configuration for building the HTML page
  * @note Some props are injected and some are configuration (rendering) settings
@@ -25,35 +33,45 @@ const htmlPlugin = new HtmlWebPackPlugin({
 	}
 });
 
+const hotModulePlugin = new webpack.HotModuleReplacementPlugin();
+
 /**
  * Webpack Configuration
  */
 module.exports = {
-	entry: './src/index.js',
+	entry: rootPath('src','index.tsx'),
 	target: 'web',
 	output: {
-		path: path.resolve(__dirname, 'build'),
+		path: rootPath('build'),
 		publicPath: '/',
-		filename: 'bundle.js'
+		filename: '[name]-bundle.js'
 	},
 	module: {
 		rules: [
 			{
-				test: /\.js$/,
+				test: /\.(js|jsx)$/,
 				exclude: [
 					/node_modules/,
-					/.json?/
+					/.json?/,
+					/contracts/
 				],
-				use: {
-					loader: 'babel-loader'
-				}
+				use: 'babel-loader'
 			}, {
-				test: /\.(s*)css$/,
+				test: /\.(ts|tsx)$/,
+				use:'awesome-typescript-loader',
+				exclude: [
+					/node_modules/,
+					/contracts/
+				]
+			}, {
+				test: /\.(scss|css)$/,
 				use: [
 					{
 						loader:'style-loader'
 					}, {
 						loader:'css-loader'
+					}, {
+						loader:'sass-loader'
 					}
 				]
 			}
@@ -61,15 +79,15 @@ module.exports = {
 	},
 	plugins: [
 		htmlPlugin,
-		new webpack.HotModuleReplacementPlugin()
+		hotModulePlugin
 	],
 	resolve: {
-		extensions: ['.js','.jsx']
+		extensions: ['.ts','.tsx','.js','.jsx']
 	},
 	devServer: {
 		publicPath:'http://localhost:8000',
-		contentBase: path.join(__dirname, 'assets'),
-		open: true, // This will auto open your browser on startup
+		contentBase: rootPath('assets'),
+		open: false, // This will auto open your browser on startup
 		lazy: false, // Not sure WTF this is... but I do it
 		compress: true,
 		historyApiFallback: true,
