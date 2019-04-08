@@ -1,28 +1,34 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Tweet } from 'react-twitter-widgets';
-// Styles
-//import './../styles/Twitter.css';
+import { withChain, ChainComponentProps } from '../utils/ChainContext';
 
-export default class ModerateElement extends React.Component {
+interface ModerateProps extends ChainComponentProps {}
 
-    state = {
+interface ModerateState {
+    tweetId:string
+    error:boolean|string
+}
+
+class ModerateElement extends React.Component<ModerateProps, ModerateState> {
+
+    state:ModerateState = {
         tweetId:'',
         error:false
     }
 
-    constructor() {
-        super();
-        // Bind all your callback/handler functions here
+    constructor(props:ModerateProps) {
+        super(props);
+        // Bindings
         this.didSelectApprove = this.didSelectApprove.bind(this);
         this.didSelectDecline = this.didSelectDecline.bind(this);
     }
 
     componentWillMount() {
         this.props.drizzle.contracts.Bounty.methods["getRandomSubmission"]().call()
-        .then(tweetId => {
+        .then((tweetId:string) => {
             console.log(tweetId);
             this.setState({ tweetId });
-        }).catch(err => {
+        }).catch((err:Error) => {
             console.log(err);
         });
     }
@@ -30,14 +36,14 @@ export default class ModerateElement extends React.Component {
     didSelectApprove() {
         const { tweetId } = this.state;
         this.props.drizzle.contracts.Bounty.methods["approveSubmission"](tweetId).send()
-        .then(success => {
+        .then((success:boolean) => {
             if (success) console.log("Success! Tweet "+tweetId+" approved");
-        }).catch(({ message }) => {
+        }).catch((error:Error) => {
             const approvedPattern = /Already\sapproved/gi;
-            if (approvedPattern.test(message)) {
+            if (approvedPattern.test(error.message)) {
                 this.setState({ error:'Already approved' });
             } else {
-                console.log(message);
+                console.log(error.message);
             }
         });
     }
@@ -62,3 +68,5 @@ export default class ModerateElement extends React.Component {
         )
     }
 }
+
+export default withChain(ModerateElement);

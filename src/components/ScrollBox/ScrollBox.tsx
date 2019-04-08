@@ -1,33 +1,37 @@
 import React from 'react';
-import posed from 'react-pose';
-import { transform, value, styler, spring, listen, decay, pointer, stagger } from 'popmotion';
-const { clamp } = transform;
+import { value, styler, spring, stagger } from 'popmotion';
 // Constants
-const SLIDE_AXIS = 'x';
-const SLIDE_DURATION = 300;
-const SLIDE_DAMPING = 40;
+const SLIDE_AXIS:string = 'x';
+const SLIDE_DURATION:number = 300;
+const SLIDE_DAMPING:number = 40;
 
-export default class ScrollBox extends React.Component {
+interface ScrollBoxProps {
+    index:number
+}
 
-    static defaultProps ={
-        index:0
-    }
+interface ScrollBoxState {}
 
-    scrollRef = React.createRef();
+/**
+ * ScrollBox
+ * @desc Manages user scroll interaction for a collection of ScrollCard elements
+ */
+export default class ScrollBox extends React.Component<ScrollBoxProps, ScrollBoxState> {
+
+    scrollRef:React.RefObject<HTMLDivElement> = React.createRef();
 
     componentDidMount() {
         //this.collectCards();
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps:ScrollBoxProps) {
         if (prevProps.index !== this.props.index) {
             this.slideToIndex(this.props.index);
         }
     }
 
-    slideToIndex(index) {
+    slideToIndex(index:number) {
         // Get and cleanse variables
-        const slider = this.scrollRef.current;
+        const slider:HTMLDivElement = this.scrollRef.current!;
         // Initialize controllers
         const sliderStyle = styler(slider);
         const sliderValue = value(sliderStyle.get(SLIDE_AXIS), sliderStyle.set(SLIDE_AXIS));
@@ -45,10 +49,11 @@ export default class ScrollBox extends React.Component {
     }
 
     collectCards() {
-        const cardStyles = Array.from(document.getElementsByClassName('scroll-card')).map(styler);
-        const totalCards = cardStyles.length;
+        // Capture and wrap all scroll cards
+        const cardStyles:any = Array.from(document.getElementsByClassName('scroll-card')).map(styler);
+        const totalCards:number = cardStyles.length;
         // Animate cards
-        const animations = cardStyles.map((card, idx) => {
+        const animations = cardStyles.map((card:any, idx:number) => {
             const offset = idx - this.props.index;
             card.set('zIndex', (1000 - Math.abs(100 * offset)));
             return spring({
@@ -65,14 +70,12 @@ export default class ScrollBox extends React.Component {
             });
         });
 
-        stagger(animations, -SLIDE_DURATION).start(v => v.forEach((x, i) => cardStyles[i].set(x)));
+        stagger(animations, -SLIDE_DURATION).start((v:number[]) => v.forEach((x:number, i:number) => cardStyles[i].set(x)));
     }
 
     render() {
         return (
-            <div className="scroll-box" pose={this.props.index} ref={this.scrollRef}>
-                {this.props.children}
-            </div>
+            <div className="scroll-box" ref={this.scrollRef}>{this.props.children}</div>
         )
     }
 }

@@ -1,10 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Lottie from 'react-lottie';
-import * as animationData from '../json/feature.json';
-import { withChain } from '../utils/ChainContext';
-// Constants
-const DAYS:string[] = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-const MONTHS:string[] = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+import * as animationData from './../../json/feature.json';
+import { withChain, ChainComponentProps } from './../../utils/ChainContext';
+// Components
+import DateElement from './DateElement'
 
 interface HeaderLottieOptions {
     loop:boolean
@@ -15,8 +14,8 @@ interface HeaderLottieOptions {
     }
 }
 
-interface HeaderProps {
-    drizzle:any
+interface HeaderProps extends ChainComponentProps {
+    
 }
 
 interface HeaderState {
@@ -82,35 +81,6 @@ class Header extends React.Component<HeaderProps, HeaderState> {
             </header>    
         )
     }
-}
-
-interface DateElementProps {
-    date:Date
-}
-
-const DateElement = ({ date }:DateElementProps):JSX.Element => (
-    <span className="date">
-        <span className="day">{DAYS[date.getDay()]}</span>
-        <span className="date">{date.getDate()+date.getOrdinalSuffix()}</span>
-        <span className="month">{MONTHS[date.getMonth()]}</span>
-    </span>
-)
-
-declare global {
-    interface Date {
-        getOrdinalSuffix(day?:number):string
-    }
-}
-
-Date.prototype.getOrdinalSuffix = (day:number):string => {
-    // Get the date and last digit
-    const date = day || this.getDate();
-    const lastDigit = date % 10, lastTwoDigits = date % 100;
-    // Return appropriate ordinal
-    if (lastDigit == 1 && lastTwoDigits != 11) return "st";
-    if (lastDigit == 2 && lastTwoDigits != 12) return "nd";
-    if (lastDigit == 3 && lastTwoDigits != 13) return "rd";
-    return "th";
 }
 
 export default withChain(Header);

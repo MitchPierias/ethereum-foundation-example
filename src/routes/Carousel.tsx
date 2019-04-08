@@ -3,8 +3,8 @@ import { Mention } from 'react-twitter-widgets';
 // Components
 import ScrollBox from '../components/ScrollBox/ScrollBox';
 import ScrollCard from '../components/ScrollBox/ScrollCard';
-import PublishRoute from './publish';
-import TwitterExample from '../components/TwitterExample';
+import PublishRoute from './../components/PublishElement';
+import TwitterExample from '../components/TwitterMock';
 // Constants
 const CAMPAIGN_TWITTER_HANDLE = 'MitchPierias';
 const CAMPAIGN_TWITTER_HASHTAG = 'PlantATreeDay2019';
@@ -29,7 +29,7 @@ export default class HomeRoute extends React.Component<HomeProps, HomeState> {
         this.didCompleteTask = this.didCompleteTask.bind(this);
     }
 
-    didCompleteTask(event:React.TouchEvent<HTMLButtonElement>) {
+    didCompleteTask(event:React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         event.preventDefault();
         let { featuredIndex } = this.state;
         if (featuredIndex < 4) featuredIndex++;
@@ -57,7 +57,7 @@ export default class HomeRoute extends React.Component<HomeProps, HomeState> {
                     <span style={{marginBottom:"1vw"}}>Post to twitter, making sure to include @{CAMPAIGN_TWITTER_HANDLE} and #{CAMPAIGN_TWITTER_HASHTAG}</span>
                     <TwitterExample>
                         <span style={{margin:"-0.5vw 0.5vw 0px 0px"}}>
-                            <Mention username={CAMPAIGN_TWITTER_HANDLE} class="twitter-mention-button" data-show-count="false">Tweet to @{CAMPAIGN_TWITTER_HANDLE}</Mention>
+                            <Mention username={CAMPAIGN_TWITTER_HANDLE} data-show-count="false">Tweet to @{CAMPAIGN_TWITTER_HANDLE}</Mention>
                         </span>
                     </TwitterExample>
                 </ScrollCard>

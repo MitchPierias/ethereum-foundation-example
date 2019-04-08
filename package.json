@@ -5,12 +5,13 @@
   "main": "./src/App.js",
   "scripts": {
     "start": "nf start",
-    "start:react": "webpack-dev-server --env development --progress",
-    "build": "webpack --env production"
+    "start:react": "webpack-dev-server --mode development --progress",
+    "build": "webpack --mode production"
   },
   "author": "Mitch Pierias <github.com/MitchPierias>",
   "license": "ISC",
   "dependencies": {
+    "@types/web3": "^1.0.18",
     "drizzle": "^1.2.4",
     "drizzle-react": "^1.2.0",
     "openzeppelin-solidity": "^2.1.2",

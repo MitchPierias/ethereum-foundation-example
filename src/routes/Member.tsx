@@ -1,18 +1,29 @@
 import React, { Fragment } from 'react';
 import { utils } from 'web3';
-import { withChain } from '../utils/ChainContext';
+import { withChain, ChainComponentProps } from '../utils/ChainContext';
 
-class MemberElement extends React.Component {
+interface MemberProps extends ChainComponentProps {
 
-    state = {
+}
+
+interface MemberState {
+    tokens:number
+    total:number
+    amount:number
+    contribution:number
+}
+
+class MemberElement extends React.Component<MemberProps, MemberState> {
+
+    state:MemberState = {
         tokens:0,
         total:0,
         amount:0,
         contribution:0
     }
 
-    constructor() {
-        super();
+    constructor(props:MemberProps) {
+        super(props);
         // Bindings
         this.didChangeAmount = this.didChangeAmount.bind(this);
         this.didSubmitClaim = this.didSubmitClaim.bind(this);
@@ -21,35 +32,35 @@ class MemberElement extends React.Component {
     }
 
     componentWillMount() {
-        this.props.drizzle.contracts.Bounty.methods["getTokens"]().call().then(tokens => this.setState({ tokens })).catch(console.log);
-        this.props.drizzle.contracts.Bounty.methods["totalShares"]().call().then(total => this.setState({ total })).catch(console.log);
+        this.props.drizzle.contracts.Bounty.methods["getTokens"]().call().then((tokens:number) => this.setState({ tokens })).catch(console.log);
+        this.props.drizzle.contracts.Bounty.methods["totalShares"]().call().then((total:number) => this.setState({ total })).catch(console.log);
     }
 
-    didChangeAmount(event) {
-        const amount = event.target.value;
+    didChangeAmount(event:React.ChangeEvent<HTMLInputElement>) {
+        const amount = Number(event.target.value);
         this.setState({ amount });
     }
 
-    didChangeDonation(event) {
-        const contribution = event.target.value;
+    didChangeDonation(event:React.ChangeEvent<HTMLInputElement>) {
+        const contribution = Number(event.target.value);
         this.setState({ contribution });
     }
 
-    didSubmitClaim(event) {
+    didSubmitClaim(event:React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        this.props.drizzle.contracts.Bounty.methods["claimReward"](this.state.amount).send().then(receipt => {
+        this.props.drizzle.contracts.Bounty.methods["claimReward"](this.state.amount).send().then((receipt:any) => {
             console.log(receipt);
-        }).catch(err => {
+        }).catch((err:Error) => {
             console.log(err);
         });
     }
 
-    didSubmitContribute(event) {
+    didSubmitContribute(event:React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         const value = utils.toWei(this.state.contribution.toString(),'ether');
-        this.props.drizzle.contracts.Bounty.methods["contribute"]().send({ value }).then(receipt => {
+        this.props.drizzle.contracts.Bounty.methods["contribute"]().send({ value }).then((receipt:any) => {
             console.log(receipt);
-        }).catch(err => {
+        }).catch((err:Error) => {
             console.log(err);
         });
     }
@@ -63,7 +74,7 @@ class MemberElement extends React.Component {
                 <div>You have</div>
                 <div>{tokens} Tokens</div>
                 <form onSubmit={this.didSubmitClaim}>
-                    <input name="amount" type="number" defaultValue={tokens} min={0} max={tokens} step={1} onChange={this.didChangeAmount}/>
+                    <input name="amount" type="number" defaultValue={tokens.toString()} min={0} max={tokens} step={1} onChange={this.didChangeAmount}/>
                     <button type="submit">Claim</button>
                 </form>
                 <form onSubmit={this.didSubmitContribute}>

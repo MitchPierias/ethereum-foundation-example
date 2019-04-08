@@ -5,10 +5,10 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ChainProvider } from './utils/ChainContext';
 import Header from './components/Header';
 import Carousel from './routes/Carousel';
-import MemberRoute from './routes/member';
+import MemberRoute from './routes/Member';
 import ModerateRoute from './components/ModerateElement';
 // CSS
-import './styles/index.scss';
+import './index.scss';
 // Contracts ABIs
 import BountyABI from './../build/contracts/Bounty.json';
 const contracts = [BountyABI];
