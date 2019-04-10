@@ -21,6 +21,7 @@ const htmlPlugin = new HtmlWebPackPlugin({
 	filename: "index.html",
 	meta: {
 		"viewport": "width=device-width, initial-scale=1, shrink-to-fit=no",
+		"link": `href="https://fonts.googleapis.com/css?family=Lato", rel="stylesheet"`,
 		"theme-color": "#f9f9f9"
 	},
 	minify: {
