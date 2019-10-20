@@ -51,6 +51,9 @@ Submissions close, moderation remains open and participants can claim their awar
 #### Moderators
 Moderators are any entity which has had their submission approved. In other words, the submisison approval acts as a KYC verification stage, but we've made it community driven and incentivised our moderators as such.
 
+#### Incentives
+Participants can reveice badges like power donator or power contributor for contributing past certain thresholds.
+
 ## Notes
 - You will need to add safemath libraries.
 - Doens't do any GAS maths...
