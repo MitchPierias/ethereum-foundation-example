@@ -17,7 +17,7 @@ const rootPath = (...args) => args.reduce((fullPath, pathComponent) => path.join
  */
 const htmlPlugin = new HtmlWebPackPlugin({
 	title: "Plant a Tree Day",
-	template: "./src/index.html",
+	template: rootPath('src', 'index.html'),
 	filename: "index.html",
 	meta: {
 		"viewport": "width=device-width, initial-scale=1, shrink-to-fit=no",
@@ -62,6 +62,7 @@ module.exports = {
 				use:'awesome-typescript-loader',
 				exclude: [
 					/node_modules/,
+					/.json?/,
 					/contracts/
 				]
 			}, {

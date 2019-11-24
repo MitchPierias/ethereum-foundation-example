@@ -1,6 +1,5 @@
 # Build and Release Folders
 build
-.package-lock.json
 .vscode
 # Module folders
 node_modules
@@ -11,4 +10,3 @@ node_modules
 *.air
 *.ipa
 *.apk
-package-lock.json

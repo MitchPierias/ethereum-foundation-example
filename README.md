@@ -1,25 +1,28 @@
 # Ethereum Variable Bounty Contract Example
-Handles bounty escrow between supporters and participants for completion of a specified task.
+Handles escrow between supporters and participants for completion of a specified task.
 
 - No middle men.
 - No hidden fees or expenses.
 
 ## Usage
-Starting a local blockchain instance with webpack-dev-server is as simple as executing `./run.sh`. Alternatively, if you'd like to manually start your blockchain and environment, you can follow the steps below.
+Starting a local blockchain instance with webpack-dev-server is as simple as executing `./run.sh`.
+> Forman currently fails to maintain an ethereum server and triggers the process to exit
+
+Alternatively, if you'd like to manually start your blockchain and environment, you can follow the steps below.
 
 Install all required dependencies;
 ```
-npm install
+yarn
 ```
 Start a blockchain instance with Ganashe-CLI with our testing mneumonic;
 ```
-npm install ganache-cli
+yarn add -g ganache-cli
 ganache-cli -m clerk orchard ill believe nuclear insane double roof doll butter clump state
 ```
 
 Test truffle is setup to run and deploy a local environment. You can configure these settings in `truffle-config.js`.
 ```
-npm install truffle-cli -g
+npm install -g truffle
 truffle test --network development
 ```
 
@@ -30,7 +33,7 @@ truffle migrate
 
 Start the local environment with `webpack-dev-server`:
 ```
-npm start
+yarn start
 ```
 
 Before you run the local environment, make sure you have Metamask installed in your browser of choice and configured to Localhost
